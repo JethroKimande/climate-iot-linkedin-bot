@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 requests==2.32.4
 schedule==1.2.2
 matplotlib==3.10.5
@@ -7,3 +8,17 @@ fastapi==0.116.1
 apscheduler==3.11.0
 uvicorn==0.35.0
 redis==6.2.0
+=======
+requests
+schedule
+matplotlib
+python-dotenv
+pandas
+fastapi
+apscheduler
+uvicorn
+requests
+python-dotenv
+redis
+pytest
+>>>>>>> main
