@@ -1,0 +1,11 @@
+requests
+schedule
+matplotlib
+python-dotenv
+pandas
+fastapi
+apscheduler
+uvicorn
+requests
+python-dotenv
+redis
