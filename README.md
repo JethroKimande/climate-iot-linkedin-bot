@@ -1,10 +1,7 @@
-# climate-iot-linkedin-bot
-Automated Python pipeline that fetches open-source satellite pollution data (NO₂, O₃, CO, PM), analyzes air quality trends, and posts weekly insights to LinkedIn using scheduled routines. Built for climate transparency, data-driven storytelling, and cost-free deployment.
-📡 Powered by APIs like Caeli and NASA GIBS 📊 Visualizes pollution metrics via Python charts 📢 Auto-publishes commentary through LinkedIn UGC API 🧠 Designed for collaboration, impact, and scalability
 # 🌍 Climate-IoT LinkedIn Automation Bot
 
 A Python-based automation system that fetches satellite air pollution data, processes it into insights, visualizes trends, and posts weekly updates to LinkedIn—all powered by open data.
-
+📡 Powered by APIs like Caeli and NASA GIBS 📊 Visualizes pollution metrics via Python charts 📢 Auto-publishes commentary through LinkedIn UGC API 🧠 Designed for collaboration, impact, and scalability
 ## 🚀 Overview
 
 This project automates the pipeline between open satellite APIs and professional social media. It analyzes pollutants like NO₂, shares the story through charts and captions, and posts to LinkedIn using scheduled routines. Perfect for climate advocacy, data storytelling, and building your public voice.
