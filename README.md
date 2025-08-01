@@ -47,6 +47,14 @@ CAELI_API_KEY=your_api_key_here
 ⏰ Automation Schedule
 Posts run every Monday at 09:00 AM. Adjust this in scheduler.py as needed.
 
+## 🧪 Running Tests
+
+Install the requirements first, then run `pytest` from the project root:
+
+```bash
+pytest
+```
+
 📢 Sample LinkedIn Output
 🌫️ This week’s NO₂ average over Nairobi: 18.6 µg/m³. Satellite data confirms a 12% drop compared to last week. Could rainfall be clearing the air? Let's talk about climate resilience. #ClimateTech #DataForGood #IoTAfrica
 
