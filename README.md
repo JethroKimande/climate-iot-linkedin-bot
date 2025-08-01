@@ -8,7 +8,20 @@ This project automates the pipeline between open satellite APIs and professional
 
 ## 📁 Folder Structure
 
-/climate-iot-bot ├── fetch_data.py # Retrieves satellite data (Caeli or NASA) ├── process_data.py # Calculates air quality stats ├── visualize.py # Creates trend charts ├── compose_post.py # Generates captions for LinkedIn ├── linkedin_bot.py # Posts via LinkedIn UGC API ├── scheduler.py # Automates weekly posting ├── .env # Stores credentials securely └── README.md # Project documentation
+```
+.
+├── apscheduler_api/  # FastAPI server for running jobs
+│   └── main.py
+├── scripts/          # Stand‑alone job scripts
+│   ├── fetch_satellite_data.py
+│   ├── generate_chart.py
+│   ├── list_gibs_layers.py
+│   └── ptest.py
+├── data/             # Output CSVs and images
+├── job_logs.txt      # Logs from scheduled runs
+├── requirements.txt  # Python dependencies
+└── README.md
+```
 
 
 ## 🛰️ Data Sources
@@ -19,24 +32,40 @@ This project automates the pipeline between open satellite APIs and professional
 
 ## 🧰 Dependencies
 
-- Python 3.9+
-- `requests`
-- `schedule`
-- `matplotlib`
-- `python-dotenv`
-- `pandas`
+This project requires **Python&nbsp;3.9+**. Install all packages with:
 
 ```bash
 pip install -r requirements.txt
+```
 
+## 🔐 Environment Variables
 
-🔐 Environment Variables
-Create a .env file with:
+Create a `.env` file in the repository root containing:
+
+```
 LINKEDIN_ACCESS_TOKEN=your_token_here
 CAELI_API_KEY=your_api_key_here
+```
+
+These variables are read by the job scripts at runtime.
+
 
 ⏰ Automation Schedule
-Posts run every Monday at 09:00 AM. Adjust this in scheduler.py as needed.
+Posts run every Monday at 09:00 AM. Adjust this in `scheduler.py` as needed.
+
+## 🚦 Running the API
+
+Start the FastAPI server with:
+
+```bash
+uvicorn apscheduler_api.main:app --reload
+```
+
+Trigger an individual job (for example `fetch_satellite_data`) via HTTP:
+
+```bash
+curl -X POST http://127.0.0.1:8000/run-job/fetch_satellite_data
+```
 
 📢 Sample LinkedIn Output
 🌫️ This week’s NO₂ average over Nairobi: 18.6 µg/m³. Satellite data confirms a 12% drop compared to last week. Could rainfall be clearing the air? Let's talk about climate resilience. #ClimateTech #DataForGood #IoTAfrica
