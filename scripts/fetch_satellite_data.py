@@ -65,7 +65,9 @@ def fetch_api_no2(date_str):
         response = requests.get(API_URL, params={"date": date_str, "bbox": REGION}, timeout=10)
         if response.status_code == 200:
             data = response.json()
-            return round(data.get("no2_ppb", None), 1)
+            value = data.get("no2_ppb")
+            # API sometimes returns null, avoid rounding in that case
+            return round(value, 1) if value is not None else None
     except Exception as e:
         logging.warning(f"⚠️ API fetch failed for {date_str}: {e}")
     return None
