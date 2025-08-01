@@ -8,16 +8,7 @@ This project automates the pipeline between open satellite APIs and professional
 
 ## 📁 Folder Structure
 
-/climate-iot-linkedin-bot
-├── apscheduler_api/               # API endpoints for job scheduling
-├── data/                          # Data and log files
-├── scripts/
-│   ├── fetch_satellite_data.py    # Download images and NO₂ estimates
-│   ├── generate_chart.py          # Build pollution trend charts
-│   └── list_gibs_layers.py        # List available NASA GIBS layers
-├── job_logs.txt                   # Example job log output
-├── requirements.txt
-└── README.md
+
 
 
 ## 🛰️ Data Sources
