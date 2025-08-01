@@ -8,7 +8,16 @@ This project automates the pipeline between open satellite APIs and professional
 
 ## 📁 Folder Structure
 
-/climate-iot-bot ├── fetch_data.py # Retrieves satellite data (Caeli or NASA) ├── process_data.py # Calculates air quality stats ├── visualize.py # Creates trend charts ├── compose_post.py # Generates captions for LinkedIn ├── linkedin_bot.py # Posts via LinkedIn UGC API ├── scheduler.py # Automates weekly posting ├── .env # Stores credentials securely └── README.md # Project documentation
+/climate-iot-linkedin-bot
+├── apscheduler_api/               # API endpoints for job scheduling
+├── data/                          # Data and log files
+├── scripts/
+│   ├── fetch_satellite_data.py    # Download images and NO₂ estimates
+│   ├── generate_chart.py          # Build pollution trend charts
+│   └── list_gibs_layers.py        # List available NASA GIBS layers
+├── job_logs.txt                   # Example job log output
+├── requirements.txt
+└── README.md
 
 
 ## 🛰️ Data Sources
