@@ -4,6 +4,7 @@ import os
 import datetime
 import sys
 import io
+
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 
@@ -11,11 +12,13 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 DATA_FILE = "data/no2_comparison_data.csv"
 CHART_DIR = "charts/"
 
+
 def load_data():
     if not os.path.exists(DATA_FILE):
         print("❌ Data file not found.")
         return pd.DataFrame()
     return pd.read_csv(DATA_FILE)
+
 
 def plot_pollution_trend(df):
     if df.empty:
@@ -36,16 +39,20 @@ def plot_pollution_trend(df):
     plt.legend()
 
     os.makedirs(CHART_DIR, exist_ok=True)
-    chart_path = os.path.join(CHART_DIR, f"no2_trend_{datetime.date.today()}.png")
+    chart_path = os.path.join(
+        CHART_DIR, f"no2_trend_{datetime.date.today()}.png"
+    )
     plt.savefig(chart_path)
     plt.close()
 
     print(f"✅ Chart saved: {chart_path}")
     return chart_path
 
+
 def main():
     df = load_data()
     plot_pollution_trend(df)
+
 
 if __name__ == "__main__":
     main()

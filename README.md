@@ -39,7 +39,13 @@ This project requires **Python&nbsp;3.9+**. Install all packages with:
 
 ```bash
 pip install -r requirements.txt
+<<<<<<< HEAD
+pip install pre-commit
+pre-commit install
+# flake8 will run automatically on each commit
+=======
 ```
+>>>>>>> main
 
 ## 🔐 Environment Variables
 

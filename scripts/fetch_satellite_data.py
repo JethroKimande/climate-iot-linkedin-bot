@@ -1,7 +1,5 @@
 import requests
-import datetime
 import os
-import time
 import logging
 import sys
 import io
@@ -23,8 +21,9 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 logging.basicConfig(
     filename=os.path.join(OUTPUT_DIR, "fetch_logs.txt"),
     level=logging.INFO,
-    format="%(asctime)s %(levelname)s: %(message)s"
+    format="%(asctime)s %(levelname)s: %(message)s",
 )
+
 
 def build_wms_url(date_str):
     return {
@@ -40,6 +39,7 @@ def build_wms_url(date_str):
         "TIME": date_str
     }
 
+
 def fetch_image(date_str):
     params = build_wms_url(date_str)
     filename = os.path.join(OUTPUT_DIR, f"pollution_{date_str}.png")
@@ -54,15 +54,19 @@ def fetch_image(date_str):
         logging.error(f"❌ Failed to fetch image for {date_str}: {e}")
     return None
 
+
 def estimate_no2_from_image(image_path):
     img = Image.open(image_path).convert("L")
     arr = np.array(img)
     mean_intensity = np.mean(arr)
     return round((mean_intensity / 255) * 40, 1)
 
+
 def fetch_api_no2(date_str):
     try:
-        response = requests.get(API_URL, params={"date": date_str, "bbox": REGION}, timeout=10)
+        response = requests.get(
+            API_URL, params={"date": date_str, "bbox": REGION}, timeout=10
+        )
         if response.status_code == 200:
             data = response.json()
             value = data.get("no2_ppb")
@@ -71,6 +75,7 @@ def fetch_api_no2(date_str):
     except Exception as e:
         logging.warning(f"⚠️ API fetch failed for {date_str}: {e}")
     return None
+
 
 def save_to_csv(date_str, image_val, api_val):
     csv_path = os.path.join(OUTPUT_DIR, "no2_comparison_data.csv")
@@ -81,6 +86,7 @@ def save_to_csv(date_str, image_val, api_val):
             writer.writerow(["date", "image_no2", "api_no2"])
         writer.writerow([date_str, image_val, api_val])
 
+
 def main():
     for date in DATES:
         img_path = fetch_image(date)
@@ -88,6 +94,7 @@ def main():
         api_val = fetch_api_no2(date)
         save_to_csv(date, image_val, api_val)
         print(f"{date}: Image={image_val} ppb, API={api_val} ppb")
+
 
 if __name__ == "__main__":
     main()
