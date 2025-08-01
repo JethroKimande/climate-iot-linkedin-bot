@@ -37,6 +37,7 @@ This project automates the pipeline between open satellite APIs and professional
 
 ```bash
 pip install -r requirements.txt
+```
 
 
 🔐 Environment Variables
@@ -73,6 +74,19 @@ Expand automation to multiple regions
 MIT © 2025 Jethro
 
 ---
+
+## Running the Job API
+
+This repository includes a small FastAPI app that runs jobs defined in the
+`scripts/` folder. Install the dependencies and launch it with:
+
+```bash
+uvicorn apscheduler_api.main:app --reload
+```
+
+Once running, trigger a job by sending a POST request to `/run-job/{job_name}`.
+See [docs/api_usage.md](docs/api_usage.md) for a full list of jobs and example
+commands.
 
 If you’d like a visual badge setup, GitHub Actions CI trigger, or even a contributor’s guide section, I can snap those in next. Want to keep evolving this into a full-blown dashboard or newsletter tool? I’m ready when you are! 😎📈
 
