@@ -9,8 +9,6 @@ This project automates the pipeline between open satellite APIs and professional
 ## 📁 Folder Structure
 
 
-
-
 ## 🛰️ Data Sources
 
 - [Caeli API](https://caeli.nl/en/api/) – satellite-based NO₂, CO, O₃, SO₂ data
