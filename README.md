@@ -28,6 +28,9 @@ This project automates the pipeline between open satellite APIs and professional
 
 ```bash
 pip install -r requirements.txt
+pip install pre-commit
+pre-commit install
+# flake8 will run automatically on each commit
 
 
 🔐 Environment Variables

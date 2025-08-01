@@ -2,10 +2,12 @@ import requests
 import xml.etree.ElementTree as ET
 import sys
 import io
+
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 
 GIBS_WMS_URL = "https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi"
+
 
 def fetch_layers():
     params = {
@@ -13,7 +15,7 @@ def fetch_layers():
         "REQUEST": "GetCapabilities"
     }
     response = requests.get(GIBS_WMS_URL, params=params)
-    
+
     if response.status_code != 200:
         print(f"❌ Failed to fetch capabilities: {response.status_code}")
         return []
@@ -29,10 +31,12 @@ def fetch_layers():
 
     return layers
 
+
 def main():
     print("🌐 Available GIBS Layers:")
     for name, title in fetch_layers():
         print(f"- {name}: {title}")
+
 
 if __name__ == "__main__":
     main()
