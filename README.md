@@ -8,6 +8,24 @@ This project automates the pipeline between open satellite APIs and professional
 
 ## 📁 Folder Structure
 
+<<<<<<< HEAD
+```
+.
+├── apscheduler_api/  # FastAPI server for running jobs
+│   └── main.py
+├── scripts/          # Stand‑alone job scripts
+│   ├── fetch_satellite_data.py
+│   ├── generate_chart.py
+│   ├── list_gibs_layers.py
+│   └── ptest.py
+├── data/             # Output CSVs and images
+├── job_logs.txt      # Logs from scheduled runs
+├── requirements.txt  # Python dependencies
+└── README.md
+```
+
+=======
+>>>>>>> main
 
 ## 🛰️ Data Sources
 
@@ -17,25 +35,40 @@ This project automates the pipeline between open satellite APIs and professional
 
 ## 🧰 Dependencies
 
-- Python 3.9+
-- `requests`
-- `schedule`
-- `matplotlib`
-- `python-dotenv`
-- `pandas`
+This project requires **Python&nbsp;3.9+**. Install all packages with:
 
 ```bash
 pip install -r requirements.txt
 ```
 
+## 🔐 Environment Variables
 
-🔐 Environment Variables
-Create a .env file with:
+Create a `.env` file in the repository root containing:
+
+```
 LINKEDIN_ACCESS_TOKEN=your_token_here
 CAELI_API_KEY=your_api_key_here
+```
+
+These variables are read by the job scripts at runtime.
+
 
 ⏰ Automation Schedule
-Posts run every Monday at 09:00 AM. Adjust this in scheduler.py as needed.
+Posts run every Monday at 09:00 AM. Adjust this in `scheduler.py` as needed.
+
+## 🚦 Running the API
+
+Start the FastAPI server with:
+
+```bash
+uvicorn apscheduler_api.main:app --reload
+```
+
+Trigger an individual job (for example `fetch_satellite_data`) via HTTP:
+
+```bash
+curl -X POST http://127.0.0.1:8000/run-job/fetch_satellite_data
+```
 
 ## 🧪 Running Tests
 
