@@ -1,6 +1,4 @@
 import os
-import sys
-import pytest
 
 MODULE_PATH = os.path.join(os.path.dirname(__file__), "..", "scripts", "fetch_satellite_data.py")
 
@@ -32,4 +30,3 @@ def test_build_wms_url_basic():
     }
 
     assert params == expected
-

@@ -1,0 +1,6 @@
+2025-08-02 02:14:15,953 INFO: \u2705 Saved image for 2025-07-01
+2025-08-02 02:14:16,293 WARNING: \u26a0\ufe0f API fetch failed for 2025-07-01: HTTPSConnectionPool(host='api.caeli.io', port=443): Max retries exceeded with url: /v1/no2?date=2025-07-01&bbox=36.65%2C-0.40%2C36.95%2C-0.10 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000168FEE066B0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+2025-08-02 02:14:17,441 INFO: \u2705 Saved image for 2025-07-08
+2025-08-02 02:14:17,458 WARNING: \u26a0\ufe0f API fetch failed for 2025-07-08: HTTPSConnectionPool(host='api.caeli.io', port=443): Max retries exceeded with url: /v1/no2?date=2025-07-08&bbox=36.65%2C-0.40%2C36.95%2C-0.10 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000168FEE067A0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+2025-08-02 02:14:18,586 INFO: \u2705 Saved image for 2025-07-15
+2025-08-02 02:14:18,618 WARNING: \u26a0\ufe0f API fetch failed for 2025-07-15: HTTPSConnectionPool(host='api.caeli.io', port=443): Max retries exceeded with url: /v1/no2?date=2025-07-15&bbox=36.65%2C-0.40%2C36.95%2C-0.10 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000168FEE06740>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))

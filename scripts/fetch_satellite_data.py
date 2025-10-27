@@ -1,7 +1,5 @@
 import requests
-import datetime
 import os
-import time
 import logging
 import sys
 import io
@@ -20,11 +18,13 @@ REGION = "36.65,-0.40,36.95,-0.10"
 DATES = ["2025-07-01", "2025-07-08", "2025-07-15"]
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+
 logging.basicConfig(
     filename=os.path.join(OUTPUT_DIR, "fetch_logs.txt"),
     level=logging.INFO,
     format="%(asctime)s %(levelname)s: %(message)s"
 )
+
 
 def build_wms_url(date_str):
     return {
@@ -40,6 +40,7 @@ def build_wms_url(date_str):
         "TIME": date_str
     }
 
+
 def fetch_image(date_str):
     params = build_wms_url(date_str)
     filename = os.path.join(OUTPUT_DIR, f"pollution_{date_str}.png")
@@ -54,11 +55,17 @@ def fetch_image(date_str):
         logging.error(f"❌ Failed to fetch image for {date_str}: {e}")
     return None
 
+
 def estimate_no2_from_image(image_path):
-    img = Image.open(image_path).convert("L")
-    arr = np.array(img)
-    mean_intensity = np.mean(arr)
-    return round((mean_intensity / 255) * 40, 1)
+    try:
+        img = Image.open(image_path).convert("L")
+        arr = np.array(img)
+        mean_intensity = np.mean(arr)
+        return round((mean_intensity / 255) * 40, 1)
+    except Exception as e:
+        logging.error(f"❌ Failed to process image {image_path}: {e}")
+        return None
+
 
 def fetch_api_no2(date_str):
     try:
@@ -72,6 +79,7 @@ def fetch_api_no2(date_str):
         logging.warning(f"⚠️ API fetch failed for {date_str}: {e}")
     return None
 
+
 def save_to_csv(date_str, image_val, api_val):
     csv_path = os.path.join(OUTPUT_DIR, "no2_comparison_data.csv")
     write_header = not os.path.exists(csv_path)
@@ -81,13 +89,18 @@ def save_to_csv(date_str, image_val, api_val):
             writer.writerow(["date", "image_no2", "api_no2"])
         writer.writerow([date_str, image_val, api_val])
 
+
 def main():
+    print("🛰️ Starting satellite data fetch...")
     for date in DATES:
+        print(f"📅 Processing date: {date}")
         img_path = fetch_image(date)
         image_val = estimate_no2_from_image(img_path) if img_path else None
         api_val = fetch_api_no2(date)
         save_to_csv(date, image_val, api_val)
-        print(f"{date}: Image={image_val} ppb, API={api_val} ppb")
+        print(f"✅ {date}: Image={image_val} ppb, API={api_val} ppb")
+    print("🎉 Data fetch completed!")
+
 
 if __name__ == "__main__":
     main()
